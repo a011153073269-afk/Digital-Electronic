@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ديجيتال إلكترونكس - حلول صناعية متكاملة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0A1F44;
+            --primary-orange: #F27A2B;
+            --secondary-blue: #1E3A6E;
+            --secondary-orange: #FF9D5C;
+            --light-blue: #E8F0FE;
+            --light-gray: #f5f7fa;
+            --medium-gray: #E2E8F0;
+            --dark-gray: #4A5568;
+            --white: #FFFFFF;
+            --black: #1A202C;
+            --success: #48BB78;
+            --warning: #ECC94B;
+            --error: #F56565;
+            --border-radius: 12px;
+            --border-radius-sm: 8px;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --box-shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--light-gray);
+            color: var(--primary-blue);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-spacing {
+            padding: 100px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-50 {
+            margin-bottom: 50px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 5px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            transition: var(--transition);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            height: 55px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.7rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text span {
+            color: var(--primary-orange);
+            -webkit-text-fill-color: var(--primary-orange);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-orange) 0%, var(--secondary-orange) 100%);
+            transition: var(--transition);
+            border-radius: 10px;
+        }
+
+        nav a:hover {
+            color: var(--primary-orange);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        nav a.active {
+            color: var(--primary-orange);
+        }
+
+        nav a.active:after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--secondary-orange) 100%);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(242, 122, 43, 0.25);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(242, 122, 43, 0.35);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(242, 122, 43, 0.1) 0%, rgba(255, 157, 92, 0.05) 100%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(10, 31, 68, 0.1) 0%, rgba(30, 58, 110, 0.05) 100%);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            line-height: 1.3;
+            font-weight: 800;
+            color: var(--primary-blue);
+        }
+
+        .hero-text h1 span {
+            color: var(--primary-orange);
+            position: relative;
+        }
+
+        .hero-text h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            right: 0;
+            width: 100%;
+            height: 10px;
+            background-color: rgba(242, 122, 43, 0.2);
+            z-index: -1;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 40px;
+            max-width: 90%;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            padding: 12px 28px;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .secondary-button:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(10, 31, 68, 0.2);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-lg);
+            transition: var(--transition-slow);
+            transform: perspective(1000px) rotateY(-5deg);
+        }
+
+        .hero-image:hover img {
+            transform: perspective(1000px) rotateY(0);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .stat-content h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .stat-content p {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin: 0;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            font-weight: 800;
+            color: var(--primary-blue);
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange) 0%, var(--secondary-orange) 100%);
+            border-radius: 10px;
+        }
+
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-orange) 0%, var(--secondary-orange) 100%);
+            transform: translateX(100%);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotateY(180deg);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .feature-card p {
+            color: var(--dark-gray);
+            line-height: 1.8;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--light-blue) 100%);
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .products-filter {
+            display: flex;
+            gap: 15px;
+        }
+
+        .filter-button {
+            padding: 10px 20px;
+            background-color: var(--white);
+            border: 1px solid var(--medium-gray);
+            border-radius: var(--border-radius-sm);
+            color: var(--dark-gray);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-button.active, .filter-button:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow-lg);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--secondary-orange) 100%);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(10, 31, 68, 0.8) 0%, transparent 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .product-action {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .product-action:hover {
+            background-color: var(--primary-orange);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .product-info p {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-weight: 800;
+            color: var(--primary-orange);
+            font-size: 1.3rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-rating i {
+            color: var(--warning);
+            font-size: 0.9rem;
+        }
+
+        /* Brands Section */
+        .brands {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .brands-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .brand-logo {
+            height: 70px;
+            opacity: 0.6;
+            transition: var(--transition);
+            filter: grayscale(100%);
+        }
+
+        .brand-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: translateY(-5px);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .testimonials::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .testimonials .section-title h2 {
+            color: var(--white);
+        }
+
+        .testimonials .section-title h2::after {
+            background: linear-gradient(90deg, var(--secondary-orange) 0%, var(--primary-orange) 100%);
+        }
+
+        .testimonials .section-title p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .testimonial-content {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .testimonial-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-content::before {
+            content: '"';
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            top: -30px;
+            right: -10px;
+            font-family: sans-serif;
+            line-height: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-details p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--secondary-orange) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-white {
+            background-color: var(--white);
+            color: var(--primary-orange);
+        }
+
+        .cta-white:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .cta-transparent {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .cta-transparent:hover {
+            background-color: var(--white);
+            color: var(--primary-orange);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 80px 0 30px;
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-orange) 0%, var(--secondary-orange) 100%);
+            border-radius: 10px;
+        }
+
+        .footer-about p {
+            margin-bottom: 25px;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-orange);
+            padding-right: 5px;
+        }
+
+        .footer-links a i {
+            font-size: 0.9rem;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-info i {
+            font-size: 1.1rem;
+            color: var(--primary-orange);
+            margin-top: 3px;
+        }
+
+        .contact-info div {
+            opacity: 0.8;
+        }
+
+        .footer-newsletter p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 18px;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-family: inherit;
+        }
+
+        .newsletter-input:focus {
+            outline: 2px solid var(--primary-orange);
+        }
+
+        .newsletter-button {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--secondary-orange) 100%);
+            color: var(--white);
+            border: none;
+            padding: 0 20px;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-orange);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--secondary-orange) 100%);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(242, 122, 43, 0.3);
+            z-index: 99;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-stats {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 50px;
+            }
+            
+            .hero-text p {
+                max-width: 100%;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-image img {
+                transform: perspective(1000px) rotateY(0);
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+            
+            .products-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .products-filter {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .mobile-toggle {
+                display: block;
+                position: absolute;
+                top: 25px;
+                left: 20px;
+            }
+            
+            .header-actions {
+                margin-top: 15px;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .features-grid,
+            .products-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .brands-grid {
+                gap: 30px;
+            }
+            
+            .brand-logo {
+                height: 50px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .section-spacing {
+                padding: 70px 0;
+            }
+            
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons .cta-button,
+            .hero-buttons .secondary-button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-buttons .cta-button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+            
+            .product-info {
+                padding: 20px;
+            }
+            
+            .testimonial-card {
+                padding: 25px 20px;
+            }
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Scroll to Top Button -->
+    <a href="#" class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-inner">
+                <button class="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="logo-container">
+                    <img src="assets/logo.png" alt="ديجيتال الكترونك" class="logo">
+                    <div class="logo-text">ديجيتال <span>إلكترونك</span></div>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="active">الرئيسية</a></li>
+                        <li><a href="maintenance.html">طلب صيانة</a></li>
+                        <li><a href="quote.html">عرض سعر</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="https://wa.me/201010697876" class="cta-button">
+                        <i class="fab fa-whatsapp"></i> تواصل واتساب
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text animate-fadeIn">
+                    <h1>حلول <span>إلكترونية وصناعية</span> تضمن استمرارية إنتاجك</h1>
+                    <p>صيانة – توريد – برمجة: PLC, Inverters, HMI مع فريق فني متخصص وقطع غيار أصلية وخدمة سريعة على مدار الساعة</p>
+                    <div class="hero-buttons">
+                        <a href="maintenance.html" class="cta-button animate-pulse">
+                            <i class="fas fa-tools"></i> اطلب صيانة
+                        </a>
+                        <a href="quote.html" class="secondary-button">
+                            <i class="fas fa-shopping-cart"></i>اطلب عرض سعر 
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image animate-fadeIn delay-300">
+                    <img src="assets/hero-image.jpg" alt="حلول صناعية متكاملة">
+                </div>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item animate-fadeIn delay-500">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>+500</h3>
+                        <p>مشروع مكتمل</p>
+                    </div>
+                </div>
+                
+                <div class="stat-item animate-fadeIn delay-600">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>+150</h3>
+                        <p>عميل راضي</p>
+                    </div>
+                </div>
+                
+                <div class="stat-item animate-fadeIn delay-700">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>24/7</h3>
+                        <p>دعم فني</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>لماذا تختار ديجيتال إلكترونكس؟</h2>
+                <p>نقدم لكم حلولاً متكاملة وخدمات مميزة تلبي جميع احتياجاتكم الصناعية بأعلى معايير الجودة</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card animate-fadeIn delay-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>صيانة متخصصة</h3>
+                    <p>فريق فني متخصص في صيانة الأنظمة الإلكترونية والصناعية مع استجابة سريعة للطوارئ وخدمة على مدار الساعة</p>
+                </div>
+                
+                <div class="feature-card animate-fadeIn delay-200">
+                    <div class="feature-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>قطع غيار أصلية</h3>
+                    <p>توريد قطع غيار أصلية من أفضل الماركات العالمية بأسعار تنافسية وضمان على المنتجات وخدمة ما بعد البيع</p>
+                </div>
+                
+                <div class="feature-card animate-fadeIn delay-300">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>برمجة متقدمة</h3>
+                    <p>برمجة متقدمة لأنظمة PLC وInverters وHMI مع حلول مخصصة لتناسب احتياجاتكم وتطوير أنظمة التحكم</p>
+                </div>
+                
+                <div class="feature-card animate-fadeIn delay-400">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>دعم فني متكامل</h3>
+                    <p>تقديم استشارات فنية متخصصة ودعم فني على أعلى مستوى لضمان استمرارية عمل أنظمتكم الإنتاجية بدون انقطاع</p>
+                </div>
+                
+                <div class="feature-card animate-fadeIn delay-500">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>توصيل سريع</h3>
+                    <p>خدمة توصيل سريعة لجميع القطع والمنتجات في جميع أنحاء الجمهورية مع تتبع الطلبات حتى وصولها لكم</p>
+                </div>
+                
+                <div class="feature-card animate-fadeIn delay-600">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>جودة معتمدة</h3>
+                    <p>جميع خدماتنا ومنتجاتنا مطابقة لأعلى معايير الجودة العالمية ومعتمدة من كبرى الشركات المصنعة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>منتجاتنا الأكثر مبيعاً</h2>
+                <p>أفضل المنتجات الإلكترونية والصناعية من أشهر الماركات العالمية بجودة عالية وأسعار تنافسية</p>
+            </div>
+            
+            <div class="products-header">
+                <h3>أحدث المنتجات</h3>
+                <div class="products-filter">
+                    <button class="filter-button active">الكل</button>
+                    <button class="filter-button">PLC</button>
+                    <button class="filter-button">Inverters</button>
+                    <button class="filter-button">HMI</button>
+                    <button class="filter-button">Sensors</button>
+                </div>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card animate-fadeIn delay-100">
+                    <div class="product-badge">الأكثر مبيعاً</div>
+                    <div class="product-image">
+                        <img src="assets/product-plc.jpg" alt="وحدات PLC">
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>وحدات PLC متطورة</h3>
+                        <p>وحدات تحكم منطقي قابلة للبرمجة لمختلف التطبيقات الصناعية بدقة وكفاءة عالية</p>
+                        <div class="product-meta">
+                            <div class="product-price">upon request</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card animate-fadeIn delay-200">
+                    <div class="product-badge">جديد</div>
+                    <div class="product-image">
+                        <img src="assets/product-inverter.jpg" alt="مغيرات السرعة">
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>مغيرات السرعة</h3>
+                        <p>متحكمات في سرعة المحركات لتوفير الطاقة وتحسين الأداء مع كفاءة عالية</p>
+                        <div class="product-meta">
+                            <div class="product-price">upon request</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card animate-fadeIn delay-300">
+                    <div class="product-image">
+                        <img src="assets/product-hmi.jpg" alt="شاشات HMI">
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>شاشات HMI</h3>
+                        <p>واجهات الإنسان والآلة للتحكم في العمليات الصناعية بشاشات لمس عالية الدقة</p>
+                        <div class="product-meta">
+                            <div class="product-price">upon request</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card animate-fadeIn delay-400">
+                    <div class="product-badge">عرض خاص</div>
+                    <div class="product-image">
+                        <img src="assets/product-sensor.jpg" alt="أجهزة الاستشعار">
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>أجهزة الاستشعار</h3>
+                        <p>مجموعة متنوعة من أجهزة الاستشعار للاستخدام الصناعي بدقة عالية وتقنيات متطورة</p>
+                        <div class="product-meta">
+                            <div class="product-price">upon request</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card animate-fadeIn delay-500">
+                    <div class="product-image">
+                        <img src="assets/product-motor.jpg" alt="محركات صناعية">
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>محركات صناعية</h3>
+                        <p>محركات صناعية عالية الكفاءة بسرعات متغيرة وتقنيات متطورة لتوفير الطاقة</p>
+                        <div class="product-meta">
+                            <div class="product-price">upon request</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card animate-fadeIn delay-600">
+                    <div class="product-badge">تخفيض</div>
+                    <div class="product-image">
+                        <img src="assets/product-cable.jpg" alt="كابلات صناعية">
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                                <a href="#" class="product-action">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>كابلات صناعية</h3>
+                        <p>كابلات صناعية متينة ومقاومة للظروف القاسية بمواصفات قياسية وجودة عالية</p>
+                        <div class="product-meta">
+                            <div class="product-price">upon request</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands" id="brands">
+        <div class="container">
+            <div class="section-title">
+                <h2>العلامات التجارية التي نتعامل معها</h2>
+                <p>نوفر منتجات وقطع غيار من أشهر الماركات العالمية في مجال الصناعة والإلكترونيات</p>
+            </div>
+            
+            <div class="brands-grid">
+                <img src="assets/brand-siemens.png" alt="Siemens" class="brand-logo">
+                <img src="assets/brand-abb.png" alt="ABB" class="brand-logo">
+                <img src="assets/brand-schneider.png" alt="Schneider Electric" class="brand-logo">
+                <img src="assets/brand-omron.png" alt="Omron" class="brand-logo">
+                <img src="assets/brand-Delta.png" alt="Delta" class="brand-logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>آراء عملائنا</h2>
+                <p>اكتشف ما يقوله عملاؤنا عن جودة خدماتنا ومدى رضاهم عن تعاملهم معنا</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>تعاملت مع شركة ديجيتال إلكترونكس في صيانة خط الإنتاج الخاص بنا وكانت خدمة ممتازة وسريعة، الفريق الفني على أعلى مستوى من الخبرة والكفاءة.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="assets/avatar1.jpg" alt="عميل">
+                        </div>
+                        <div class="testimonial-details">
+                            <h4>أحمد محمد</h4>
+                            <p>مدير مصنع</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>قدمت لي الشركة حلولاً متكاملة لأنظمة التحكم في المصنع، وكانت الأسعار مناسبة والجودة ممتازة، أنصح بالتعامل معهم لكل من يبحث عن الجودة والخبرة.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="assets/avatar2.jpg" alt="عميل">
+                        </div>
+                        <div class="testimonial-details">
+                            <h4>محمود عبد الله</h4>
+                            <p>مهندس production</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>سرعة الاستجابة وخدمة ما بعد البيع ممتازة، فريق الدعم الفني متاح على مدار الساعة ويقدم حلولاً سريعة وفعالة لأي مشكلة تواجهنا في التشغيل.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="assets/avatar3.jpg" alt="عميل">
+                        </div>
+                        <div class="testimonial-details">
+                            <h4>ياسمين علي</h4>
+                            <p>مديرة operations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>هل تحتاج إلى استشارة فنية أو خدمة صيانة؟</h2>
+                <p>فريقنا الفني المتخصص جاهز لمساعدتك في حل أي مشكلة وتقديم أفضل الحلول التقنية لتحسين كفاءة عملك</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button cta-white">
+                        <i class="fas fa-phone-alt"></i> اتصل بنا الآن
+                    </a>
+                    <a href="#" class="cta-button cta-transparent">
+                        <i class="fas fa-envelope"></i> أرسل رسالة
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column footer-about">
+                    <h3>عن الشركة</h3>
+                    <p>ديجيتال إلكترونكس شركة رائدة في مجال الحلول الصناعية والإلكترونية، نقدم خدمات الصيانة والتوريد والبرمجة لأنظمة التحكم الصناعي بأعلى معايير الجودة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> الرئيسية</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> الخدمات</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> المنتجات</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> طلب صيانة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>خدماتنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> صيانة صناعية</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> توريد قطع غيار</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> برمجة أنظمة التحكم</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> استشارات فنية</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> تطوير الأنظمة</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> تدريب فني</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>اتصل بنا</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>العاشر من رمضان الاردنيه المركز العالمى أمام مجمع البنوك</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <div>+20 101 069 7886</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>digitalelectronics044@gmail.com</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <div>الأحد - الخميس: 8 ص - 5 م<br>الجمعة - السبت: مغلق</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 ديجيتال إلكترونكس - جميع الحقوق محفوظة | تم التصميم والتطوير بواسطة فريق ديجيتال إلكترونك</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll to Top Button
+        const scrollTop = document.querySelector('.scroll-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('active');
+                document.querySelector('header').classList.add('scrolled');
+            } else {
+                scrollTop.classList.remove('active');
+                document.querySelector('header').classList.remove('scrolled');
+            }
+        });
+        
+        scrollTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Animation on Scroll
+        const animateElements = document.querySelectorAll('.animate-fadeIn');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Mobile Menu Toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const nav = document.querySelector('nav');
+        
+        mobileToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileToggle.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Product Filter
+        const filterButtons = document.querySelectorAll('.filter-button');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Here you would filter the products based on the selected category
+                // This is just a placeholder for the actual filtering logic
+            });
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
